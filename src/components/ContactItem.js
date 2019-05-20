@@ -1,9 +1,11 @@
 import React from 'react';
-import ContactInfo from './ContactInfo';
 
 const ContactItem = props => (
   <li className="contact_item">
-    <ContactInfo contact={props.contact} />
+    <dl>
+      <dt>{props.contact.name}</dt>
+      <dd>{props.contact.phoneNumber}</dd>
+    </dl>
   </li>
 );
 
