@@ -1,6 +1,63 @@
-$title-color: #f00;
+@font-face {
+  font-family: 'Work Sans';
+  src: url('https://fonts.googleapis.com/css?family=Work+Sans');
+}
 
-h1 {
-  color: $title-color;
-  text-align: center;
+$light-gray: #777;
+$dark-gray: #444;
+$box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+$default-indent: 15px;
+$sm-indent: 5px;
+$default-border: 1px solid #ccc;
+$default-border-radius: 8px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.view {
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &_title {
+    align-self: center;
+    color: $dark-gray;
+  }
+}
+
+.contact {
+  &_list {
+    height: calc(100vh - 100px); //TODO: should be update
+    list-style: none;
+    margin: 0;
+    padding: $default-indent;
+    border: $default-border;
+    box-shadow: $box-shadow;
+    overflow-y: auto;
+  }
+
+  &_item {
+    border-bottom: $default-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    dt {
+      margin-bottom: $sm-indent;
+    }
+
+    dd {
+      margin: 0;
+      color: $light-gray;
+    }
+  }
 }
