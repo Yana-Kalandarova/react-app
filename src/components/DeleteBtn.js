@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import deleteIcon from '../assets/delete-icon.svg';
 
 const propTypes = {
   deleteItem: PropTypes.func.isRequired,
@@ -21,7 +22,9 @@ class DeleteBtn extends React.Component {
 
   render() {
     return (
-      <button className="contact_btn-delete" type="button" onClick={this.handleClick}>x</button>
+      <button className="contact_btn-delete" type="button" onClick={this.handleClick}>
+        <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
+      </button>
     );
   }
 }

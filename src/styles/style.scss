@@ -5,11 +5,12 @@
 
 $light-gray: #777;
 $dark-gray: #444;
-$box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+$box-shadow: 0 1px 4px 0 #ccc;
 $default-indent: 15px;
 $sm-indent: 5px;
 $default-border: 1px solid #ccc;
 $default-border-radius: 8px;
+$icon-size: 30px;
 
 @mixin item-btn {
   flex: 0 0 50px;
@@ -17,9 +18,20 @@ $default-border-radius: 8px;
   padding: 0;
   border: $default-border;
   border-radius: $default-border-radius;
+  background: transparent;
 
   &:hover {
     box-shadow: $box-shadow;
+
+    svg {
+      color: $dark-gray;
+    }
+  }
+
+  svg {
+    width: $icon-size;
+    height: $icon-size;
+    color: $light-gray;
   }
 }
 
@@ -76,7 +88,9 @@ body {
     }
   }
 
-  &_btn-delete {
-    @include item-btn;
+  &_btn {
+    &-delete {
+      @include item-btn;
+    }
   }
 }
