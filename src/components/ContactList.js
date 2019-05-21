@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 
-const props = {
+const propTypes = {
   list: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -18,6 +18,6 @@ const ContactList = ({ list }) => (
   </ul>
 );
 
-ContactList.propTypes = props;
+ContactList.propTypes = propTypes;
 
 export default ContactList;

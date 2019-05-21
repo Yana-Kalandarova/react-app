@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const props = {
+const propTypes = {
   contact: PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -18,6 +18,6 @@ const ContactItem = ({ contact }) => (
   </li>
 );
 
-ContactItem.propTypes = props;
+ContactItem.propTypes = propTypes;
 
 export default ContactItem;
