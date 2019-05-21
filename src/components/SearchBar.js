@@ -13,6 +13,7 @@ function SearchBar({ onSearch, search }) {
       placeholder="Search"
       value={search}
       onChange={onSearch}
+      className="search_field"
     />
   );
 }
