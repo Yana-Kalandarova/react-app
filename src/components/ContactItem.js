@@ -8,43 +8,19 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 };
 
-class ContactItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isDeleted: false,
-    };
-
-    this.deleteItem = this.deleteItem.bind(this);
-  }
-
-  deleteItem() {
-    this.setState(state => ({
-      isDeleted: !state.isDeleted,
-    }));
-  }
-
-  render() {
-    const { contact } = this.props;
-    const { isDeleted } = this.state;
-
-    if (isDeleted) {
-      return null;
-    }
-
-    return (
-      <li className="contact_item">
-        <dl>
-          <dt>{contact.name}</dt>
-          <dd>{contact.phoneNumber}</dd>
-        </dl>
-        <DeleteBtn deleteItem={this.deleteItem} />
-      </li>
-    );
-  }
+function ContactItem({ contact, onDeleteItem }) {
+  return (
+    <li className="contact_item">
+      <dl>
+        <dt>{contact.name}</dt>
+        <dd>{contact.phoneNumber}</dd>
+      </dl>
+      <DeleteBtn onDeleteItem={onDeleteItem} id={contact.id} />
+    </li>
+  );
 }
 
 ContactItem.propTypes = propTypes;
