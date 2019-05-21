@@ -3,20 +3,23 @@ import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 
 const propTypes = {
-  list: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   }))).isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 };
 
-const ContactList = ({ list }) => (
-  <ul className="contact_list">
-    {
-      list.map(el => <ContactItem contact={el} key={el.id} />)
-    }
-  </ul>
-);
+function ContactList({ contactList, onDeleteItem }) {
+  return (
+    <ul className="contact_list">
+      {
+        contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteItem={onDeleteItem} />)
+      }
+    </ul>
+  );
+}
 
 ContactList.propTypes = propTypes;
 

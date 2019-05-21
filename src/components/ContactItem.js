@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DeleteButton from './DeleteButton';
 
 const propTypes = {
   contact: PropTypes.objectOf(PropTypes.shape({
@@ -7,16 +8,20 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 };
 
-const ContactItem = ({ contact }) => (
-  <li className="contact_item">
-    <dl>
-      <dt>{contact.name}</dt>
-      <dd>{contact.phoneNumber}</dd>
-    </dl>
-  </li>
-);
+function ContactItem({ contact, onDeleteItem }) {
+  return (
+    <li className="contact_item">
+      <dl>
+        <dt>{contact.name}</dt>
+        <dd>{contact.phoneNumber}</dd>
+      </dl>
+      <DeleteButton onDeleteItem={onDeleteItem} id={contact.id} />
+    </li>
+  );
+}
 
 ContactItem.propTypes = propTypes;
 

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SpriteLoader = require('svg-sprite-loader/plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -24,11 +25,22 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.svg$/,
+        use: [
+          'svg-sprite-loader',
+          'svgo-loader',
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new SpriteLoader({
+      plainSprite: true,
+      spriteAttrs: { hidden: true },
     }),
   ],
 };
