@@ -7,7 +7,7 @@ const propTypes = {
   id: PropTypes.number.isRequired,
 };
 
-function DeleteBtn({ onDeleteItem, id }) {
+function DeleteButton({ onDeleteItem, id }) {
   return (
     <button className="contact_btn-delete" type="button" onClick={onDeleteItem.bind(this, id)}>
       <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
@@ -15,6 +15,6 @@ function DeleteBtn({ onDeleteItem, id }) {
   );
 }
 
-DeleteBtn.propTypes = propTypes;
+DeleteButton.propTypes = propTypes;
 
-export default DeleteBtn;
+export default DeleteButton;
