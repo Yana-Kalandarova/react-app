@@ -1,4 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  deleteItem: PropTypes.func.isRequired,
+};
+
 
 class DeleteBtn extends React.Component {
   constructor(props) {
@@ -8,7 +14,9 @@ class DeleteBtn extends React.Component {
   }
 
   handleClick() {
-    console.log('click');
+    const { deleteItem } = this.props;
+
+    deleteItem();
   }
 
   render() {
@@ -17,5 +25,7 @@ class DeleteBtn extends React.Component {
     );
   }
 }
+
+DeleteBtn.propTypes = propTypes;
 
 export default DeleteBtn;

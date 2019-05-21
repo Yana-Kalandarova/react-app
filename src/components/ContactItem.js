@@ -17,10 +17,23 @@ class ContactItem extends React.Component {
     this.state = {
       isDeleted: false,
     };
+
+    this.deleteItem = this.deleteItem.bind(this);
+  }
+
+  deleteItem() {
+    this.setState(state => ({
+      isDeleted: !state.isDeleted,
+    }));
   }
 
   render() {
     const { contact } = this.props;
+    const { isDeleted } = this.state;
+
+    if (isDeleted) {
+      return null;
+    }
 
     return (
       <li className="contact_item">
@@ -28,7 +41,7 @@ class ContactItem extends React.Component {
           <dt>{contact.name}</dt>
           <dd>{contact.phoneNumber}</dd>
         </dl>
-        <DeleteBtn />
+        <DeleteBtn deleteItem={this.deleteItem} />
       </li>
     );
   }
