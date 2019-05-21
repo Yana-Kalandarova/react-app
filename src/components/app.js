@@ -1,9 +1,10 @@
-import React from 'react';
-import '../styles/app.scss';
+import React, { Component } from 'react';
 import dataList from '../data';
 import ContactList from './ContactList';
 
-class App extends React.Component {
+import '../styles/app.scss';
+
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -15,13 +16,13 @@ class App extends React.Component {
   handleDeleteItem = (id) => {
     const { contactList } = this.state;
 
-    const deletedIndex = contactList.findIndex(el => el.id === id);
+    const deletedIndex = contactList.findIndex(contact => contact.id === id);
     contactList.splice(deletedIndex, 1);
 
     this.setState({
       contactList,
     });
-  }
+  };
 
   render() {
     const { contactList } = this.state;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import deleteIcon from '../assets/delete-icon.svg';
 
 const propTypes = {
