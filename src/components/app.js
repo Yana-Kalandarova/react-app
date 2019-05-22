@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import dataList from '../data';
+import { filterList } from '../utils/index';
+
+import SearchBar from './SearchBar';
 import ContactList from './ContactList';
 
 import '../styles/app.scss';
@@ -10,6 +13,7 @@ class App extends Component {
 
     this.state = {
       contactList: dataList,
+      search: '',
     };
   }
 
@@ -24,12 +28,18 @@ class App extends Component {
     });
   };
 
+  handleSearch = (e) => {
+    this.setState({search: e.target.value});
+  };
+
   render() {
-    const { contactList } = this.state;
+    const { contactList, search } = this.state;
+
     return (
       <div className="view_wrap">
         <h1 className="view_title">Contact List</h1>
-        <ContactList contactList={contactList} onDeleteItem={this.handleDeleteItem} />
+        <SearchBar onSearch={this.handleSearch} search={search} />
+        <ContactList contactList={filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
       </div>
     );
   }

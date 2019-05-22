@@ -11,15 +11,13 @@ const propTypes = {
   onDeleteItem: PropTypes.func.isRequired,
 };
 
-function ContactList({ contactList, onDeleteItem }) {
-  return (
-    <ul className="contact_list">
-      {
-        contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteItem={onDeleteItem} />)
-      }
-    </ul>
-  );
-}
+const ContactList = ({ contactList, onDeleteItem }) => (
+  <ul className="contact_list">
+    {
+      contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteItem={onDeleteItem} />)
+    }
+  </ul>
+);
 
 ContactList.propTypes = propTypes;
 

@@ -50,9 +50,11 @@ body {
     max-width: 500px;
     height: 100vh;
     margin: 0 auto;
+    padding: $default-indent 0;
   }
 
   &_title {
+    margin-bottom: $default-indent;
     align-self: center;
     color: $dark-gray;
   }
@@ -92,5 +94,16 @@ body {
     &-delete {
       @include item-btn;
     }
+  }
+}
+
+.search_field {
+  margin-bottom: $default-indent;
+  padding: $default-indent;
+  border: $default-border;
+  border-radius: $default-border-radius;
+
+  &:hover {
+    box-shadow: $box-shadow;
   }
 }
