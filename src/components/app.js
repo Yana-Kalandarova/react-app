@@ -31,16 +31,16 @@ class App extends Component {
     this.setState({search: e.target.value});
   };
 
+  filterList = (list, value) => list.filter(item => item.name.includes(value));
+
   render() {
     const { contactList, search } = this.state;
-
-    const filteredList = contactList.filter(contact => contact.name.includes(search));
 
     return (
       <div className="view_wrap">
         <h1 className="view_title">Contact List</h1>
         <SearchBar onSearch={this.handleSearch} search={search} />
-        <ContactList contactList={filteredList} onDeleteItem={this.handleDeleteItem} />
+        <ContactList contactList={this.filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
       </div>
     );
   }
