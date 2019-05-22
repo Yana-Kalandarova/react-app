@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import dataList from '../data';
-import { filterList } from '../utils/index';
 
-import SearchBar from './SearchBar';
-import ContactList from './ContactList';
+import ContactListPage from './ContactListPage';
 
 import '../styles/app.scss';
 
@@ -36,11 +35,11 @@ class App extends Component {
     const { contactList, search } = this.state;
 
     return (
-      <div className="view_wrap">
-        <h1 className="view_title">Contact List</h1>
-        <SearchBar onSearch={this.handleSearch} search={search} />
-        <ContactList contactList={filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
-      </div>
+      <BrowserRouter>
+        <Route exact path="/" render={
+          () => <ContactListPage state={this.state} onDeleteItem={this.handleDeleteItem} onSearch={this.handleSearch} />
+        } />
+      </BrowserRouter>
     );
   }
 }
