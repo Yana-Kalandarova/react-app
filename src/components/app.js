@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import dataList from '../data';
 
 import ContactListPage from './ContactListPage';
+import AddContactPage from './AddContactPage';
 
 import '../styles/app.scss';
 
@@ -41,6 +42,7 @@ class App extends Component {
         <Route exact path="/" render={
           () => <ContactListPage state={this.state} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
         } />
+        <Route path="/new-contact" component={AddContactPage} />
       </BrowserRouter>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { filterList } from '../utils/index';
 
@@ -21,6 +22,7 @@ const ContactListPage = ({ state, onDeleteContact, onSearchContact }) => (
     <h1 className="view_title">Contact List</h1>
     <SearchBar onSearchContact={onSearchContact} search={state.search} />
     <ContactList contactList={filterList(state.contactList, state.search)} onDeleteContact={onDeleteContact} />
+    <Link to="/new-contact">Add Contact</Link>
   </div>
 );
 
