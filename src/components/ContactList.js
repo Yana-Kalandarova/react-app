@@ -8,13 +8,13 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   }))).isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
-const ContactList = ({ contactList, onDeleteItem }) => (
+const ContactList = ({ contactList, onDeleteContact }) => (
   <ul className="contact_list">
     {
-      contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteItem={onDeleteItem} />)
+      contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteContact={onDeleteContact} />)
     }
   </ul>
 );

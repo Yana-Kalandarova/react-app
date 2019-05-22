@@ -12,15 +12,15 @@ const propTypes = {
     search: PropTypes.string,
     contactList: PropTypes.array,
   })).isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+  onSearchContact: PropTypes.func.isRequired,
 };
 
-const ContactListPage = ({ state, onDeleteItem, onSearch }) => (
+const ContactListPage = ({ state, onDeleteContact, onSearchContact }) => (
   <div className="view_wrap">
     <h1 className="view_title">Contact List</h1>
-    <SearchBar onSearch={onSearch} search={state.search} />
-    <ContactList contactList={filterList(state.contactList, state.search)} onDeleteItem={onDeleteItem} />
+    <SearchBar onSearchContact={onSearchContact} search={state.search} />
+    <ContactList contactList={filterList(state.contactList, state.search)} onDeleteContact={onDeleteContact} />
   </div>
 );
 

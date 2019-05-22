@@ -16,7 +16,7 @@ class App extends Component {
     };
   }
 
-  handleDeleteItem = (id) => {
+  handleDeleteContact = (id) => {
     const { contactList } = this.state;
 
     const deletedIndex = contactList.findIndex(contact => contact.id === id);
@@ -27,8 +27,10 @@ class App extends Component {
     });
   };
 
-  handleSearch = (e) => {
-    this.setState({search: e.target.value});
+  handleSearchContact = (e) => {
+    this.setState({
+      search: e.target.value,
+    });
   };
 
   render() {
@@ -37,7 +39,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Route exact path="/" render={
-          () => <ContactListPage state={this.state} onDeleteItem={this.handleDeleteItem} onSearch={this.handleSearch} />
+          () => <ContactListPage state={this.state} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
         } />
       </BrowserRouter>
     );
