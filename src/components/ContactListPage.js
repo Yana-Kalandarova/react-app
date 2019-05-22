@@ -6,8 +6,6 @@ import { filterList } from '../utils/index';
 import SearchBar from './SearchBar';
 import ContactList from './ContactList';
 
-import '../styles/app.scss';
-
 const propTypes = {
   state: PropTypes.objectOf(PropTypes.shape({
     search: PropTypes.string,
