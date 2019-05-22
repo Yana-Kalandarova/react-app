@@ -20,7 +20,9 @@ const ContactListPage = ({ state, onDeleteContact, onSearchContact }) => (
     <h1 className="view_title">Contact List</h1>
     <SearchBar onSearchContact={onSearchContact} search={state.search} />
     <ContactList contactList={filterList(state.contactList, state.search)} onDeleteContact={onDeleteContact} />
-    <Link to="/new-contact">Add Contact</Link>
+    <div className="contact_btn-wrap">
+      <Link to="/new-contact" className="contact_btn-add">Add Contact</Link>
+    </div>
   </div>
 );
 
