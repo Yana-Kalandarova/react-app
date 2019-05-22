@@ -12,7 +12,7 @@ const SearchBar = ({ onSearchContact, search }) => (
     placeholder="Search"
     value={search}
     onChange={onSearchContact}
-    className="search_field"
+    className="contact_search-field"
   />
 );
 

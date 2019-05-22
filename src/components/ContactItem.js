@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const ContactItem = ({ contact, onDeleteContact }) => (
-  <li className="contact_item">
+  <li className="contact_list-item">
     <dl>
       <dt>{contact.name}</dt>
       <dd>{contact.phoneNumber}</dd>
