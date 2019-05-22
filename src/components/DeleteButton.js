@@ -8,13 +8,11 @@ const propTypes = {
   id: PropTypes.number.isRequired,
 };
 
-function DeleteButton({ onDeleteItem, id }) {
-  return (
-    <button className="contact_btn-delete" type="button" onClick={onDeleteItem.bind(this, id)}>
-      <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
-    </button>
-  );
-}
+const DeleteButton = ({ onDeleteItem, id }) => (
+  <button className="contact_btn-delete" type="button" onClick={onDeleteItem.bind(this, id)}>
+    <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
+  </button>
+);
 
 DeleteButton.propTypes = propTypes;
 

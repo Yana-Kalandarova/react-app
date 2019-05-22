@@ -6,17 +6,15 @@ const propTypes = {
   search: PropTypes.string.isRequired,
 };
 
-function SearchBar({ onSearch, search }) {
-  return (
-    <input
-      type="search"
-      placeholder="Search"
-      value={search}
-      onChange={onSearch}
-      className="search_field"
-    />
-  );
-}
+const SearchBar = ({ onSearch, search }) => (
+  <input
+    type="search"
+    placeholder="Search"
+    value={search}
+    onChange={onSearch}
+    className="search_field"
+  />
+);
 
 SearchBar.propTypes = propTypes;
 

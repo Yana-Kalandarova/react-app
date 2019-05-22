@@ -11,17 +11,15 @@ const propTypes = {
   onDeleteItem: PropTypes.func.isRequired,
 };
 
-function ContactItem({ contact, onDeleteItem }) {
-  return (
-    <li className="contact_item">
-      <dl>
-        <dt>{contact.name}</dt>
-        <dd>{contact.phoneNumber}</dd>
-      </dl>
-      <DeleteButton onDeleteItem={onDeleteItem} id={contact.id} />
-    </li>
-  );
-}
+const ContactItem = ({ contact, onDeleteItem }) => (
+  <li className="contact_item">
+    <dl>
+      <dt>{contact.name}</dt>
+      <dd>{contact.phoneNumber}</dd>
+    </dl>
+    <DeleteButton onDeleteItem={onDeleteItem} id={contact.id} />
+  </li>
+);
 
 ContactItem.propTypes = propTypes;
 
