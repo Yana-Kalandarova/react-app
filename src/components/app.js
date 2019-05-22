@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dataList from '../data';
+import { filterList } from '../utils/index';
 
 import SearchBar from './SearchBar';
 import ContactList from './ContactList';
@@ -31,8 +32,6 @@ class App extends Component {
     this.setState({search: e.target.value});
   };
 
-  filterList = (list, value) => list.filter(item => item.name.includes(value));
-
   render() {
     const { contactList, search } = this.state;
 
@@ -40,7 +39,7 @@ class App extends Component {
       <div className="view_wrap">
         <h1 className="view_title">Contact List</h1>
         <SearchBar onSearch={this.handleSearch} search={search} />
-        <ContactList contactList={this.filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
+        <ContactList contactList={filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
       </div>
     );
   }
