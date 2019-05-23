@@ -34,6 +34,16 @@ class App extends Component {
     });
   };
 
+  handleAddContact = (contact) => {
+    const { contactList } = this.state;
+
+    contactList.push(contact);
+
+    this.setState({
+      contactList,
+    });
+  };
+
   render() {
     const { contactList, search } = this.state;
 
@@ -42,7 +52,9 @@ class App extends Component {
         <Route exact path="/" render={
           () => <ContactListPage state={this.state} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
         } />
-        <Route path="/new-contact" component={AddContactPage} />
+        <Route path="/new-contact" render={
+          () => <AddContactPage state={this.state} onAddContact={this.handleAddContact} />
+        } />
       </BrowserRouter>
     );
   }
