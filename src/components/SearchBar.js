@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   onSearchContact: PropTypes.func.isRequired,
-  search: PropTypes.string.isRequired,
+  searchValue: PropTypes.string.isRequired,
 };
 
-const SearchBar = ({ onSearchContact, search }) => (
+const SearchBar = ({ onSearchContact, searchValue }) => (
   <input
     type="search"
     placeholder="Search"
-    value={search}
+    value={searchValue}
     onChange={onSearchContact}
     className="contact_search-field"
   />

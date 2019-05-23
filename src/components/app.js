@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       contactList: dataList,
-      search: '',
+      searchValue: '',
     };
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
 
   handleSearchContact = (e) => {
     this.setState({
-      search: e.target.value,
+      searchValue: e.target.value,
     });
   };
 
@@ -45,15 +45,15 @@ class App extends Component {
   };
 
   render() {
-    const { contactList, search } = this.state;
+    const { contactList, searchValue } = this.state;
 
     return (
       <BrowserRouter>
         <Route exact path="/" render={
-          () => <ContactListPage state={this.state} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
+          () => <ContactListPage searchValue={this.state.searchValue} contactList={this.state.contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
         } />
         <Route path="/new-contact" render={
-          () => <AddContactPage state={this.state} onAddContact={this.handleAddContact} />
+          () => <AddContactPage contactList={this.state.contactList} onAddContact={this.handleAddContact} />
         } />
       </BrowserRouter>
     );

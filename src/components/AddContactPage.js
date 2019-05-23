@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 import ContactForm from './ContactForm';
 
 const propTypes = {
-  state: PropTypes.objectOf(PropTypes.shape({
-    search: PropTypes.string,
-    contactList: PropTypes.array,
-  })).isRequired,
+  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+  }))).isRequired,
   onAddContact: PropTypes.func.isRequired,
 };
 
-const AddContactPage = ({ state, onAddContact }) => (
+const AddContactPage = ({ contactList, onAddContact }) => (
   <div className="view_wrap">
     <h1 className="view_title">Add Contact</h1>
-    <ContactForm state={state} onAddContact={onAddContact} />
+    <ContactForm contactList={contactList} onAddContact={onAddContact} />
   </div>
 );
 

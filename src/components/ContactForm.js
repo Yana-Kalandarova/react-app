@@ -5,10 +5,11 @@ import { withRouter, Link } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
 
 const propTypes = {
-  state: PropTypes.objectOf(PropTypes.shape({
-    search: PropTypes.string,
-    contactList: PropTypes.array,
-  })).isRequired,
+  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+  }))).isRequired,
   onAddContact: PropTypes.func.isRequired,
 };
 
@@ -67,10 +68,10 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { state, onAddContact, history } = this.props;
+    const { contactList, onAddContact, history } = this.props;
 
     const newContact = {
-      id: state.contactList[state.contactList.length - 1].id + 1,
+      id: contactList[contactList.length - 1].id + 1,
       name: this.state.name,
       phoneNumber: this.state.phoneNumber,
     };
