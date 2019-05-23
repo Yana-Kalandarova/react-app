@@ -6,6 +6,7 @@
 $white: #fff;
 $light-gray: #777;
 $dark-gray: #444;
+$error-color: #b10043;
 $default-indent: 15px;
 $sm-indent: 5px;
 $default-border: 1px solid #ccc;
@@ -48,10 +49,17 @@ $icon-size: 30px;
   &:hover {
     box-shadow: $box-shadow;
   }
+
+  &[disabled] {
+    opacity: 0.5;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 @mixin input-field {
-  margin-bottom: $default-indent;
   padding: $default-indent;
   border: $default-border;
   border-radius: $default-border-radius;
@@ -149,6 +157,8 @@ body {
 
 .contact_search-field {
   @include input-field;
+
+  margin-bottom: $default-indent;
 }
 
 .contact_form {
@@ -162,7 +172,19 @@ body {
     margin-bottom: $sm-indent;
   }
 
+  &-field-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $default-indent;
+  }
+
   &-field {
     @include input-field;
+  }
+
+  &-error {
+    margin: $sm-indent 0;
+    color: $error-color;
+    font-size: 14px;
   }
 }
