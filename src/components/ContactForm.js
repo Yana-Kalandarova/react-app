@@ -10,7 +10,7 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
-  onAddContact: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func,
 };
 
 class ContactForm extends Component {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import dataList from '../data';
 
 import ContactListPage from './ContactListPage';
 import AddContactPage from './AddContactPage';
+import EditContactPage from './EditContactPage';
 
 import '../styles/app.scss';
 
@@ -49,12 +50,18 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Route exact path="/" render={
-          () => <ContactListPage searchValue={searchValue} contactList={contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
-        } />
-        <Route path="/new-contact" render={
-          () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
-        } />
+        <Switch>
+          <Route exact path="/" render={
+            () => <ContactListPage searchValue={searchValue} contactList={contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
+          } />
+          <Route path="/new-contact" render={
+            () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
+          } />
+          <Route path="/edit-contact/:id" render={
+            // TODO: remove unnecessary props
+            ({ match, location }) => <EditContactPage contactList={contactList} id={match.params.id} location={location} match={match} />
+          } />
+        </Switch>
       </BrowserRouter>
     );
   }
