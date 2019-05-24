@@ -69,11 +69,12 @@ class ContactForm extends Component {
     e.preventDefault();
 
     const { contactList, onAddContact, history } = this.props;
+    const { name, phoneNumber } = this.state;
 
     const newContact = {
       id: contactList[contactList.length - 1].id + 1,
-      name: this.state.name,
-      phoneNumber: this.state.phoneNumber,
+      name: name,
+      phoneNumber: phoneNumber,
     };
 
     onAddContact(newContact);
@@ -81,6 +82,8 @@ class ContactForm extends Component {
   };
 
   render() {
+    const { name, phoneNumber, isNameValid, isPhoneNumberValid, isContactValid, errorMessage } = this.state;
+
     return (
       <form className="contact_form" onSubmit={this.handleSubmit}>
         <div className="contact_form-field-wrap">
@@ -90,11 +93,11 @@ class ContactForm extends Component {
             placeholder="Name"
             id="name"
             name="name"
-            value={this.state.name}
+            value={name}
             onChange={this.handleChangeInput}
             className="contact_form-field"
           />
-          {!this.state.isNameValid && <ErrorMessage message={this.state.errorMessage.name} />}
+          {!isNameValid && <ErrorMessage message={errorMessage.name} />}
         </div>
         <div className="contact_form-field-wrap">
           <label htmlFor="phoneNumber">Phone Number:</label>
@@ -103,15 +106,15 @@ class ContactForm extends Component {
             placeholder="Phone"
             id="phoneNumber"
             name="phoneNumber"
-            value={this.state.phoneNumber}
+            value={phoneNumber}
             onChange={this.handleChangeInput}
             className="contact_form-field"
           />
-          {!this.state.isPhoneNumberValid && <ErrorMessage message={this.state.errorMessage.phoneNumber} />}
+          {!isPhoneNumberValid && <ErrorMessage message={errorMessage.phoneNumber} />}
         </div>
         <div className="contact_btn-wrap">
           <Link to="/" className="contact_btn-cancel">Cancel</Link>
-          <button className="contact_btn-save" disabled={!this.state.isContactValid} type="submit">Save</button>
+          <button className="contact_btn-save" disabled={!isContactValid} type="submit">Save</button>
         </div>
       </form>
     );
