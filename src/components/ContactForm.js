@@ -5,11 +5,11 @@ import { withRouter, Link } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
 
 const propTypes = {
-  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+  contactList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-  }))).isRequired,
+  })).isRequired,
   onAddContact: PropTypes.func.isRequired,
 };
 

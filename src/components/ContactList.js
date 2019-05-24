@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 
 const propTypes = {
-  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+  contactList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-  }))).isRequired,
+  })).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
 

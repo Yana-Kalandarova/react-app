@@ -8,11 +8,11 @@ import ContactList from './ContactList';
 
 const propTypes = {
   searchValue: PropTypes.string.isRequired,
-  contactList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.shape({
+  contactList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-  }))).isRequired,
+  })).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
   onSearchContact: PropTypes.func.isRequired,
 };

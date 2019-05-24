@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import DeleteButton from './DeleteButton';
 
 const propTypes = {
-  contact: PropTypes.objectOf(PropTypes.shape({
+  contact: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-  })).isRequired,
+  }).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
 
