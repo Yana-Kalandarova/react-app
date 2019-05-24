@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import dataList from '../data';
-import { filterList } from '../utils/index';
 
-import SearchBar from './SearchBar';
-import ContactList from './ContactList';
+import ContactListPage from './ContactListPage';
+import AddContactPage from './AddContactPage';
 
 import '../styles/app.scss';
 
@@ -13,11 +13,11 @@ class App extends Component {
 
     this.state = {
       contactList: dataList,
-      search: '',
+      searchValue: '',
     };
   }
 
-  handleDeleteItem = (id) => {
+  handleDeleteContact = (id) => {
     const { contactList } = this.state;
 
     const deletedIndex = contactList.findIndex(contact => contact.id === id);
@@ -28,19 +28,34 @@ class App extends Component {
     });
   };
 
-  handleSearch = (e) => {
-    this.setState({search: e.target.value});
+  handleSearchContact = (e) => {
+    this.setState({
+      searchValue: e.target.value,
+    });
+  };
+
+  handleAddContact = (contact) => {
+    const { contactList } = this.state;
+
+    contactList.push(contact);
+
+    this.setState({
+      contactList,
+    });
   };
 
   render() {
-    const { contactList, search } = this.state;
+    const { contactList, searchValue } = this.state;
 
     return (
-      <div className="view_wrap">
-        <h1 className="view_title">Contact List</h1>
-        <SearchBar onSearch={this.handleSearch} search={search} />
-        <ContactList contactList={filterList(contactList, search)} onDeleteItem={this.handleDeleteItem} />
-      </div>
+      <BrowserRouter>
+        <Route exact path="/" render={
+          () => <ContactListPage searchValue={searchValue} contactList={contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
+        } />
+        <Route path="/new-contact" render={
+          () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
+        } />
+      </BrowserRouter>
     );
   }
 }

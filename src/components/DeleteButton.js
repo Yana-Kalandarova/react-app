@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import deleteIcon from '../assets/delete-icon.svg';
 
 const propTypes = {
-  onDeleteItem: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-const DeleteButton = ({ onDeleteItem, id }) => (
-  <button className="contact_btn-delete" type="button" onClick={onDeleteItem.bind(this, id)}>
+const DeleteButton = ({ onDeleteContact, id }) => (
+  <button className="contact_btn-delete" type="button" onClick={onDeleteContact.bind(this, id)}>
     <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
   </button>
 );

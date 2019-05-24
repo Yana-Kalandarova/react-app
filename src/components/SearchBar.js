@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  onSearch: PropTypes.func.isRequired,
-  search: PropTypes.string.isRequired,
+  onSearchContact: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
 };
 
-const SearchBar = ({ onSearch, search }) => (
+const SearchBar = ({ onSearchContact, searchValue }) => (
   <input
     type="search"
     placeholder="Search"
-    value={search}
-    onChange={onSearch}
-    className="search_field"
+    value={searchValue}
+    onChange={onSearchContact}
+    className="contact_search-field"
   />
 );
 

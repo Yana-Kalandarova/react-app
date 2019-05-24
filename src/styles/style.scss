@@ -3,16 +3,18 @@
   src: url('https://fonts.googleapis.com/css?family=Work+Sans');
 }
 
+$white: #fff;
 $light-gray: #777;
 $dark-gray: #444;
-$box-shadow: 0 1px 4px 0 #ccc;
+$error-color: #b10043;
 $default-indent: 15px;
 $sm-indent: 5px;
 $default-border: 1px solid #ccc;
 $default-border-radius: 8px;
+$box-shadow: 0 1px 4px 0 #ccc;
 $icon-size: 30px;
 
-@mixin item-btn {
+@mixin btn-contact {
   flex: 0 0 50px;
   height: 50px;
   padding: 0;
@@ -35,6 +37,38 @@ $icon-size: 30px;
   }
 }
 
+@mixin btn-form {
+  flex: 1 1 100px;
+  padding: $default-indent;
+  border: $default-border;
+  border-radius: $default-border-radius;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+@mixin input-field {
+  padding: $default-indent;
+  border: $default-border;
+  border-radius: $default-border-radius;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -54,23 +88,21 @@ body {
   }
 
   &_title {
-    margin-bottom: $default-indent;
+    margin: 0 0 $default-indent;
     align-self: center;
     color: $dark-gray;
   }
 }
 
-.contact {
-  &_list {
-    list-style: none;
-    margin: 0;
-    padding: $default-indent;
-    border: $default-border;
-    box-shadow: $box-shadow;
-    overflow-y: auto;
-  }
+.contact_list {
+  list-style: none;
+  margin: 0 0 $default-indent;
+  padding: $default-indent;
+  border: $default-border;
+  box-shadow: $box-shadow;
+  overflow-y: auto;
 
-  &_item {
+  &-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,21 +121,70 @@ body {
       color: $light-gray;
     }
   }
+}
 
-  &_btn {
-    &-delete {
-      @include item-btn;
-    }
+.contact_btn {
+  &-wrap {
+    display: flex;
+  }
+
+  &-add {
+
+  }
+
+  &-delete {
+    @include btn-contact;
+  }
+
+  &-add,
+  &-cancel,
+  &-save {
+    @include btn-form;
+  }
+
+  &-cancel {
+    margin-right: $default-indent * 2;
+    color: $dark-gray;
+    background: $white;
+  }
+
+  &-add,
+  &-save {
+    color: $white;
+    background: $light-gray;
   }
 }
 
-.search_field {
+.contact_search-field {
+  @include input-field;
+
   margin-bottom: $default-indent;
+}
+
+.contact_form {
+  display: flex;
+  flex-direction: column;
   padding: $default-indent;
   border: $default-border;
   border-radius: $default-border-radius;
 
-  &:hover {
-    box-shadow: $box-shadow;
+  label {
+    margin-bottom: $sm-indent;
+  }
+
+  &-field-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $default-indent;
+  }
+
+  &-field {
+    @include input-field;
+  }
+
+  &-error {
+    margin: $sm-indent 0;
+    color: $error-color;
+    font-size: 14px;
   }
 }

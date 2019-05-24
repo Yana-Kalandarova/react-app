@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import DeleteButton from './DeleteButton';
 
 const propTypes = {
-  contact: PropTypes.objectOf(PropTypes.shape({
+  contact: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-  })).isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
+  }).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
-const ContactItem = ({ contact, onDeleteItem }) => (
-  <li className="contact_item">
+const ContactItem = ({ contact, onDeleteContact }) => (
+  <li className="contact_list-item">
     <dl>
       <dt>{contact.name}</dt>
       <dd>{contact.phoneNumber}</dd>
     </dl>
-    <DeleteButton onDeleteItem={onDeleteItem} id={contact.id} />
+    <DeleteButton onDeleteContact={onDeleteContact} id={contact.id} />
   </li>
 );
 
