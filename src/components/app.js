@@ -50,10 +50,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Route exact path="/" render={
-          () => <ContactListPage searchValue={this.state.searchValue} contactList={this.state.contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
+          () => <ContactListPage searchValue={searchValue} contactList={contactList} onDeleteContact={this.handleDeleteContact} onSearchContact={this.handleSearchContact} />
         } />
         <Route path="/new-contact" render={
-          () => <AddContactPage contactList={this.state.contactList} onAddContact={this.handleAddContact} />
+          () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
         } />
       </BrowserRouter>
     );
