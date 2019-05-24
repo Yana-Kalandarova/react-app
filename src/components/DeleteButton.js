@@ -5,11 +5,11 @@ import deleteIcon from '../assets/delete-icon.svg';
 
 const propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
+  contactId: PropTypes.number.isRequired,
 };
 
-const DeleteButton = ({ onDeleteContact, id }) => (
-  <button className="contact_btn-delete" type="button" onClick={onDeleteContact.bind(this, id)}>
+const DeleteButton = ({ onDeleteContact, contactId }) => (
+  <button className="contact_btn-delete" type="button" onClick={onDeleteContact.bind(this, contactId)}>
     <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
   </button>
 );

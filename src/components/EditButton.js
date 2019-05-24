@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import editIcon from '../assets/edit-icon.svg';
 
 const propTypes = {
-  id: PropTypes.number.isRequired,
+  contactId: PropTypes.number.isRequired,
 };
 
-const EditButton = ({ id }) => (
-  <Link to={`/edit-contact/${id}`} className="contact_btn-edit">
+const EditButton = ({ contactId }) => (
+  <Link to={`/edit-contact/${contactId}`} className="contact_btn-edit">
     <svg><use xlinkHref={`#${editIcon.id}`} /></svg>
   </Link>
 );

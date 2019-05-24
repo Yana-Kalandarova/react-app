@@ -10,24 +10,24 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
-  id: PropTypes.string.isRequired,
+  contactId: PropTypes.string.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 
 // TODO: remove unnecessary props
 const EditContactPage = ({
-  contactList, id, location, match,
+  contactList, contactId, location, match,
 }) => {
   console.log(contactList);
-  console.log(id);
+  console.log(contactId);
   console.log(location);
   console.log(match);
 
   return (
     <div className="view_wrap">
       <h1 className="view_title">Edit Contact</h1>
-      <ContactForm contactList={contactList} id={id} />
+      <ContactForm contactList={contactList} contactId={contactId} />
     </div>
   );
 };

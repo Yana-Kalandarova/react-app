@@ -18,10 +18,10 @@ class App extends Component {
     };
   }
 
-  handleDeleteContact = (id) => {
+  handleDeleteContact = (contactId) => {
     const { contactList } = this.state;
 
-    const deletedIndex = contactList.findIndex(contact => contact.id === id);
+    const deletedIndex = contactList.findIndex(contact => contact.id === contactId);
     contactList.splice(deletedIndex, 1);
 
     this.setState({
@@ -57,9 +57,9 @@ class App extends Component {
           <Route path="/new-contact" render={
             () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
           } />
-          <Route path="/edit-contact/:id" render={
+          <Route path="/edit-contact/:contactId" render={
             // TODO: remove unnecessary props
-            ({ match, location }) => <EditContactPage contactList={contactList} id={match.params.id} location={location} match={match} />
+            ({ match, location }) => <EditContactPage contactList={contactList} contactId={match.params.contactId} location={location} match={match} />
           } />
         </Switch>
       </BrowserRouter>

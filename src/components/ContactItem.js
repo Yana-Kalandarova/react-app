@@ -18,8 +18,8 @@ const ContactItem = ({ contact, onDeleteContact }) => (
       <dt>{contact.name}</dt>
       <dd>{contact.phoneNumber}</dd>
     </dl>
-    <EditButton id={contact.id} />
-    <DeleteButton onDeleteContact={onDeleteContact} id={contact.id} />
+    <EditButton contactId={contact.id} />
+    <DeleteButton onDeleteContact={onDeleteContact} contactId={contact.id} />
   </li>
 );
 
