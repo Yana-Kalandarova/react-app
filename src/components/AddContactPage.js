@@ -15,7 +15,7 @@ const propTypes = {
 const AddContactPage = ({ contactList, onAddContact }) => (
   <div className="view_wrap">
     <h1 className="view_title">Add Contact</h1>
-    <ContactForm contactList={contactList} onAddContact={onAddContact} />
+    <ContactForm contactList={contactList} onUpdateContact={onAddContact} />
   </div>
 );
 
