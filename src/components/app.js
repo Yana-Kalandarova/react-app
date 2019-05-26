@@ -45,6 +45,18 @@ class App extends Component {
     });
   };
 
+  handleEditContact = (contact) => {
+    const { contactList } = this.state;
+    const contactId = contact.id;
+    const editedIndex = contactList.findIndex(contact => contact.id === contactId);;
+
+    contactList.splice(editedIndex, 1, contact);
+
+    this.setState({
+      contactList,
+    });
+  };
+
   render() {
     const { contactList, searchValue } = this.state;
 
@@ -58,8 +70,7 @@ class App extends Component {
             () => <AddContactPage contactList={contactList} onAddContact={this.handleAddContact} />
           } />
           <Route path="/edit-contact/:contactId" render={
-            // TODO: remove unnecessary props
-            ({ match, location }) => <EditContactPage contactList={contactList} contactId={match.params.contactId} location={location} match={match} />
+            () => <EditContactPage contactList={contactList} onEditContact={this.handleEditContact} />
           } />
         </Switch>
       </BrowserRouter>
