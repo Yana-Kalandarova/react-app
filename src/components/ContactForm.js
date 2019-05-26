@@ -10,24 +10,39 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
-  onAddContact: PropTypes.func,
+  onUpdateContact: PropTypes.func.isRequired,
 };
 
 class ContactForm extends Component {
   constructor(props) {
     super(props);
 
+    this.isEditMode = this.props.match.path.includes('/edit-contact/');
+    this.contactId = parseInt(this.props.match.params.contactId);
+
     this.state = {
-      name: '',
-      phoneNumber: '',
-      isNameValid: false,
-      isPhoneNumberValid: false,
+      name: this.isEditMode ? this.getContactName() : '',
+      phoneNumber: this.isEditMode ? this.getContactPhone() : '',
+      isNameValid: this.isEditMode || false,
+      isPhoneNumberValid: this.isEditMode || false,
       isContactValid: false,
       errorMessage: {
         name: '',
         phoneNumber: '',
       },
     }
+  };
+
+  getContactName = () => {
+    const { contactList } = this.props;
+
+    return contactList.find(contact => contact.id === this.contactId).name;
+  };
+
+  getContactPhone = () => {
+    const { contactList } = this.props;
+
+    return contactList.find(contact => contact.id === this.contactId).phoneNumber;
   };
 
   handleChangeInput = (e) => {
@@ -68,16 +83,16 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { contactList, onAddContact, history } = this.props;
+    const { contactList, onUpdateContact, history } = this.props;
     const { name, phoneNumber } = this.state;
 
     const newContact = {
-      id: contactList[contactList.length - 1].id + 1,
+      id: this.isEditMode ? this.contactId : contactList[contactList.length - 1].id + 1,
       name: name,
       phoneNumber: phoneNumber,
     };
 
-    onAddContact(newContact);
+    onUpdateContact(newContact);
     history.push('/');
   };
 
