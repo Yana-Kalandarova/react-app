@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { findIndexById } from '../utils/index';
 import dataList from '../data';
 
 import ContactListPage from './ContactListPage';
@@ -21,7 +22,7 @@ class App extends Component {
   handleDeleteContact = (contactId) => {
     const { contactList } = this.state;
 
-    const deletedIndex = contactList.findIndex(contact => contact.id === contactId);
+    const deletedIndex = findIndexById(contactList, contactId);
     contactList.splice(deletedIndex, 1);
 
     this.setState({
@@ -48,7 +49,7 @@ class App extends Component {
   handleEditContact = (contact) => {
     const { contactList } = this.state;
     const contactId = contact.id;
-    const editedIndex = contactList.findIndex(contact => contact.id === contactId);;
+    const editedIndex = findIndexById(contactList, contact.id);
 
     contactList.splice(editedIndex, 1, contact);
 
