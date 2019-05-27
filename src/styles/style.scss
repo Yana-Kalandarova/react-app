@@ -15,8 +15,12 @@ $box-shadow: 0 1px 4px 0 #ccc;
 $icon-size: 30px;
 
 @mixin btn-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 0 0 50px;
   height: 50px;
+  margin: 0 $sm-indent;
   padding: 0;
   border: $default-border;
   border-radius: $default-border-radius;
@@ -104,12 +108,15 @@ body {
 
   &-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     border-bottom: $default-border;
 
     &:last-child {
       border-bottom: none;
+    }
+
+    dl {
+      flex-grow: 1;
     }
 
     dt {
@@ -128,10 +135,7 @@ body {
     display: flex;
   }
 
-  &-add {
-
-  }
-
+  &-edit,
   &-delete {
     @include btn-contact;
   }

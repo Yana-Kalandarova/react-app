@@ -9,16 +9,16 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
-  onAddContact: PropTypes.func.isRequired,
+  onEditContact: PropTypes.func.isRequired,
 };
 
-const AddContactPage = ({ contactList, onAddContact }) => (
+const EditContactPage = ({ contactList, onEditContact }) => (
   <div className="view_wrap">
-    <h1 className="view_title">Add Contact</h1>
-    <ContactForm contactList={contactList} onUpdateContact={onAddContact} />
+    <h1 className="view_title">Edit Contact</h1>
+    <ContactForm contactList={contactList} onUpdateContact={onEditContact} />
   </div>
 );
 
-AddContactPage.propTypes = propTypes;
+EditContactPage.propTypes = propTypes;
 
-export default AddContactPage;
+export default EditContactPage;

@@ -10,7 +10,7 @@ const propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
   })).isRequired,
-  onAddContact: PropTypes.func.isRequired,
+  onUpdateContact: PropTypes.func.isRequired,
 };
 
 class ContactForm extends Component {
@@ -18,16 +18,34 @@ class ContactForm extends Component {
     super(props);
 
     this.state = {
-      name: '',
-      phoneNumber: '',
-      isNameValid: false,
-      isPhoneNumberValid: false,
+      name: this.isEditMode() ? this.getContactName() : '',
+      phoneNumber: this.isEditMode() ? this.getContactPhone() : '',
+      isNameValid: this.isEditMode() || false,
+      isPhoneNumberValid: this.isEditMode() || false,
       isContactValid: false,
       errorMessage: {
         name: '',
         phoneNumber: '',
       },
     }
+  };
+
+  isEditMode = () => this.props.match.path.includes('/edit-contact/');
+
+  getContactId = () => parseInt(this.props.match.params.contactId);
+
+  getContactName = () => {
+    const { contactList } = this.props;
+    const contactId = this.getContactId();
+
+    return contactList.find(contact => contact.id === contactId).name;
+  };
+
+  getContactPhone = () => {
+    const { contactList } = this.props;
+    const contactId = this.getContactId();
+
+    return contactList.find(contact => contact.id === contactId).phoneNumber;
   };
 
   handleChangeInput = (e) => {
@@ -46,7 +64,7 @@ class ContactForm extends Component {
 
     switch(fieldName) {
       case 'name':
-        isNameValid = value.match(/^[a-zA-Z0-9-_\s\.]{1,20}$/);
+        isNameValid = value.match(/^[a-zA-Z0-9-_\s.]{1,20}$/);
         errorMessage.name = isNameValid ? '' : 'Contact name is invalid';
         break;
       case 'phoneNumber':
@@ -68,16 +86,16 @@ class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { contactList, onAddContact, history } = this.props;
+    const { contactList, onUpdateContact, history } = this.props;
     const { name, phoneNumber } = this.state;
 
     const newContact = {
-      id: contactList[contactList.length - 1].id + 1,
+      id: this.isEditMode() ? this.getContactId() : contactList[contactList.length - 1].id + 1,
       name: name,
       phoneNumber: phoneNumber,
     };
 
-    onAddContact(newContact);
+    onUpdateContact(newContact);
     history.push('/');
   };
 

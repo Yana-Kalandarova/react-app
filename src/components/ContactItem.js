@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 
 const propTypes = {
@@ -17,7 +18,8 @@ const ContactItem = ({ contact, onDeleteContact }) => (
       <dt>{contact.name}</dt>
       <dd>{contact.phoneNumber}</dd>
     </dl>
-    <DeleteButton onDeleteContact={onDeleteContact} id={contact.id} />
+    <EditButton contactId={contact.id} />
+    <DeleteButton onDeleteContact={onDeleteContact} contactId={contact.id} />
   </li>
 );
 
