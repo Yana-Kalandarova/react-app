@@ -17,14 +17,11 @@ class ContactForm extends Component {
   constructor(props) {
     super(props);
 
-    this.isEditMode = this.props.match.path.includes('/edit-contact/');
-    this.contactId = parseInt(this.props.match.params.contactId);
-
     this.state = {
-      name: this.isEditMode ? this.getContactName() : '',
-      phoneNumber: this.isEditMode ? this.getContactPhone() : '',
-      isNameValid: this.isEditMode || false,
-      isPhoneNumberValid: this.isEditMode || false,
+      name: this.isEditMode() ? this.getContactName() : '',
+      phoneNumber: this.isEditMode() ? this.getContactPhone() : '',
+      isNameValid: this.isEditMode() || false,
+      isPhoneNumberValid: this.isEditMode() || false,
       isContactValid: false,
       errorMessage: {
         name: '',
@@ -33,16 +30,22 @@ class ContactForm extends Component {
     }
   };
 
+  isEditMode = () => this.props.match.path.includes('/edit-contact/');
+
+  getContactId = () => parseInt(this.props.match.params.contactId);
+
   getContactName = () => {
     const { contactList } = this.props;
+    const contactId = this.getContactId();
 
-    return contactList.find(contact => contact.id === this.contactId).name;
+    return contactList.find(contact => contact.id === contactId).name;
   };
 
   getContactPhone = () => {
     const { contactList } = this.props;
+    const contactId = this.getContactId();
 
-    return contactList.find(contact => contact.id === this.contactId).phoneNumber;
+    return contactList.find(contact => contact.id === contactId).phoneNumber;
   };
 
   handleChangeInput = (e) => {
@@ -61,7 +64,7 @@ class ContactForm extends Component {
 
     switch(fieldName) {
       case 'name':
-        isNameValid = value.match(/^[a-zA-Z0-9-_\s\.]{1,20}$/);
+        isNameValid = value.match(/^[a-zA-Z0-9-_\s.]{1,20}$/);
         errorMessage.name = isNameValid ? '' : 'Contact name is invalid';
         break;
       case 'phoneNumber':
@@ -87,7 +90,7 @@ class ContactForm extends Component {
     const { name, phoneNumber } = this.state;
 
     const newContact = {
-      id: this.isEditMode ? this.contactId : contactList[contactList.length - 1].id + 1,
+      id: this.isEditMode() ? this.getContactId() : contactList[contactList.length - 1].id + 1,
       name: name,
       phoneNumber: phoneNumber,
     };
