@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
+import { filterList } from '../utils/index';
 
 const propTypes = {
   contactList: PropTypes.arrayOf(PropTypes.shape({
@@ -21,4 +23,8 @@ const ContactList = ({ contactList, onDeleteContact }) => (
 
 ContactList.propTypes = propTypes;
 
-export default ContactList;
+const mapStateToProps = state => ({
+  contactList: filterList(state.contactList, state.searchValue),
+});
+
+export default connect(mapStateToProps)(ContactList);

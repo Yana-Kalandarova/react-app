@@ -1,21 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { searchContact } from '../actions';
 
-const propTypes = {
-  onSearchContact: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired,
+const SearchBar = ({ dispatch }) => {
+  let input;
+
+  return (
+    <input
+      ref={(node) => { input = node; }}
+      type="search"
+      placeholder="Search"
+      onChange={() => dispatch(searchContact(input.value))}
+      className="contact_search-field"
+    />
+  );
 };
 
-const SearchBar = ({ onSearchContact, searchValue }) => (
-  <input
-    type="search"
-    placeholder="Search"
-    value={searchValue}
-    onChange={onSearchContact}
-    className="contact_search-field"
-  />
-);
-
-SearchBar.propTypes = propTypes;
-
-export default SearchBar;
+export default connect()(SearchBar);
