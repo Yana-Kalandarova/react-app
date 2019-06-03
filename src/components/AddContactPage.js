@@ -27,8 +27,4 @@ const mapStateToProps = state => ({
   contactList: state.contactList,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onAddContact: contact => dispatch(addContact(contact)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddContactPage);
+export default connect(mapStateToProps, { onAddContact: addContact })(AddContactPage);
