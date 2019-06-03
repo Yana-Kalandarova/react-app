@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteContact } from '../actions';
 import ContactItem from './ContactItem';
 import { filterList } from '../utils/index';
 
@@ -16,7 +17,7 @@ const propTypes = {
 const ContactList = ({ contactList, onDeleteContact }) => (
   <ul className="contact_list">
     {
-      contactList.map(el => <ContactItem contact={el} key={el.id} onDeleteContact={onDeleteContact} />)
+      contactList.map(contact => <ContactItem {...contact} key={contact.id} onDeleteContact={onDeleteContact} />)
     }
   </ul>
 );
@@ -27,4 +28,8 @@ const mapStateToProps = state => ({
   contactList: filterList(state.contactList, state.searchValue),
 });
 
-export default connect(mapStateToProps)(ContactList);
+const mapDispatchToProps = dispatch => ({
+  onDeleteContact: id => dispatch(deleteContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

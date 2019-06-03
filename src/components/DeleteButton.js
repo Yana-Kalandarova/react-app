@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const DeleteButton = ({ onDeleteContact, contactId }) => (
-  <button className="contact_btn-delete" type="button" onClick={onDeleteContact.bind(this, contactId)}>
+  <button className="contact_btn-delete" type="button" onClick={() => onDeleteContact(contactId)}>
     <svg><use xlinkHref={`#${deleteIcon.id}`} /></svg>
   </button>
 );
