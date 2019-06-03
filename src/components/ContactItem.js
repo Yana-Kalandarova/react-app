@@ -10,7 +10,9 @@ const propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const ContactItem = ({ name, phoneNumber, id, onDeleteContact }) => (
+const ContactItem = ({
+  name, phoneNumber, id, onDeleteContact,
+}) => (
   <li className="contact_list-item">
     <dl>
       <dt>{name}</dt>

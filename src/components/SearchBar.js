@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { searchContact } from '../actions';
 
-const SearchBar = ({ dispatch }) => {
+const propTypes = {
+  onSearchContact: PropTypes.func.isRequired,
+};
+const SearchBar = ({ onSearchContact }) => {
   let input;
 
   return (
@@ -10,10 +14,16 @@ const SearchBar = ({ dispatch }) => {
       ref={(node) => { input = node; }}
       type="search"
       placeholder="Search"
-      onChange={() => dispatch(searchContact(input.value))}
+      onChange={() => onSearchContact(input.value)}
       className="contact_search-field"
     />
   );
 };
 
-export default connect()(SearchBar);
+SearchBar.propTypes = propTypes;
+
+const mapDispatchToProps = dispatch => ({
+  onSearchContact: value => dispatch(searchContact(value)),
+});
+
+export default connect(null, mapDispatchToProps)(SearchBar);
