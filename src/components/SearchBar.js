@@ -10,13 +10,17 @@ const propTypes = {
 const SearchBar = ({ searchValue, onSearchContact }) => {
   let input;
 
+  const handleSearchContact = () => {
+    onSearchContact(input.value);
+  };
+
   return (
     <input
       ref={(node) => { input = node; }}
       type="search"
       placeholder="Search"
       value={searchValue}
-      onChange={() => onSearchContact(input.value)}
+      onChange={handleSearchContact}
       className="contact_search-field"
     />
   );
