@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import ContactForm from './ContactForm';
+import { addContact } from '../actions';
 
 const propTypes = {
   contactList: PropTypes.arrayOf(PropTypes.shape({
@@ -15,10 +17,14 @@ const propTypes = {
 const AddContactPage = ({ contactList, onAddContact }) => (
   <div className="view_wrap">
     <h1 className="view_title">Add Contact</h1>
-    <ContactForm contactList={contactList} onUpdateContact={onAddContact} />
+    <ContactForm onUpdateContact={onAddContact} contactList={contactList} />
   </div>
 );
 
 AddContactPage.propTypes = propTypes;
 
-export default AddContactPage;
+const mapStateToProps = state => ({
+  contactList: state.contactList,
+});
+
+export default connect(mapStateToProps, { onAddContact: addContact })(AddContactPage);

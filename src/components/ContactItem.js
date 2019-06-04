@@ -4,22 +4,22 @@ import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 
 const propTypes = {
-  contact: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    phoneNumber: PropTypes.string,
-  }).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const ContactItem = ({ contact, onDeleteContact }) => (
+const ContactItem = ({
+  name, phoneNumber, id, onDeleteContact,
+}) => (
   <li className="contact_list-item">
     <dl>
-      <dt>{contact.name}</dt>
-      <dd>{contact.phoneNumber}</dd>
+      <dt>{name}</dt>
+      <dd>{phoneNumber}</dd>
     </dl>
-    <EditButton contactId={contact.id} />
-    <DeleteButton onDeleteContact={onDeleteContact} contactId={contact.id} />
+    <EditButton contactId={id} />
+    <DeleteButton onDeleteContact={onDeleteContact} contactId={id} />
   </li>
 );
 
